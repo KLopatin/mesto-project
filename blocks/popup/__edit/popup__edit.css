@@ -1,0 +1,9 @@
+.popup__edit {
+   margin: 54px auto 0 auto;
+}
+
+@media (max-width: 600px) {
+   .popup__edit {
+      margin: 75px auto 0 auto;
+   }
+}

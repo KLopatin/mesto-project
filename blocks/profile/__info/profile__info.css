@@ -1,0 +1,25 @@
+.profile__info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    gap: 0; /*В задании 16px, но для подгонки пиксель перфекта указано 0*/
+}  
+/*В целях переполнения контейнера - собрано на флексе*/
+
+    /*Можно собрать на гриде, с фикс row и column, попадем в пиксель перфект, но имя будет налезать на описание при переполнении*/
+    /*Если задать row: min-content min-content, то не попадаем в пиксель перфект, но будет переполнение*/
+/*.profile__info {
+    margin-left: 30px;
+    display: grid;
+    grid-template-columns: 294px 24px ;
+    grid-template-rows: minmax(39px, 1fr) minmax(18px, 1fr);  
+    gap: 16px 18px;
+}*/
+
+@media (max-width: 600px) {
+    .profile__info {
+        justify-self: center;
+        margin-left: 0;
+        margin-top: 22.25px;
+    }
+}
