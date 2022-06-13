@@ -56,11 +56,13 @@ profileAddClose.addEventListener('click', function (){    //Закрытие п�
   closePopup(popupMesto)
 });
 
-document.querySelector('#popup-mesto__edit').addEventListener('submit', addCardSubmitHandler); // Выбрали форму добавления карточки в попапе и Добавили слушатель, который запустит функцию добавления карточки
+const mestoEdit = document.querySelector('#popup-mesto__edit') // Выбрали форму добавления карточки в попапе
 const mestoTitle = document.querySelector('#input-title'); // Выбрали первый инпут формы 
 const mestoLink = document.querySelector('#input-link'); // Выбрали второй инпут формы
 const mestoElements = document.querySelector('.elements'); //Выбрали куда вставлять
 
+mestoEdit.addEventListener('submit', addCardSubmitHandler);  //Добавили слушатель, который запустит функцию добавления карточки
+//Если повесить обработчик в одну строку, не срабатывает фукция reset()
 
 //ФУНКЦИЯ ДОБАВЛЕНИЯ КАРТОЧКИ, ЛАЙК, УДАЛЕНИЕ И ОШИБКА, ЕСЛИ ПОЛЯ ПУСТЫЕ
 function addCardSubmitHandler(evt) {
@@ -70,9 +72,9 @@ function addCardSubmitHandler(evt) {
           link: mestoLink.value,
         }
         renderCard(data, mestoElements);    //Вызываем функцию рендера карточки и аргументами, которые получены из инпутов
-
+      
     closePopup(popupMesto); //Закрываем попап
-    evt.target.reset()   //Очищаем поля ввода
+    mestoEdit.reset();  //Очищаем поля ввода 
   };
  
 
