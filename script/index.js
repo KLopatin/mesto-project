@@ -1,7 +1,7 @@
 const profileEdit = document.querySelector('.profile__edit'); //Выбрали кнопку редактирования профиля
-const popupEdit = document.querySelector('.popup'); //Выбрали секцию попап, чтобы показать(добавить класс) его при нажатии на кнопку
+const popupEdit = document.querySelector('#popup-edit'); //Выбрали секцию попап редактирования профиля, чтобы показать(добавить класс) его при нажатии на кнопку
 
-const profileClose = document.querySelector('.popup__close'); //Выбрали кнопку закрытия попапа
+const profileClose = document.querySelector('#popup-edit__close'); //Выбрали кнопку закрытия попапа редактирования профиля
 
 function openPopup(popupElement) {    //ФУНКЦИЯ ОТКРЫТИЯ ПОПАПА
   popupElement.classList.add('popup_opened');
@@ -11,17 +11,22 @@ function closePopup(popupElement) {    //ФУНКЦИЯ ЗАКРЫТИЯ ПОП�
   popupElement.classList.remove('popup_opened');
 }
 
-profileEdit.addEventListener('click', function (){    //Открытие попапа редактирования профиля
-  openPopup(popupEdit)
+profileEdit.addEventListener('click', function (){   //Открытие попапа редактирования профиля по клику
+  addValueToTextcontent(popupEdit)    //вызываем функцию, которая подставляет значения имени и профессии в поля инпут с нудным попапом
+  openPopup(popupEdit)   
 }); 
 
 profileClose.addEventListener('click', function (){    //Закрытие попапа редактирования профиля
   closePopup(popupEdit)
 });
 
+function addValueToTextcontent(popup) {       //Функция, которая подставляет децствующие значения имени и профессии в поля инпут
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileInfoAbout.textContent;
+}
 
 //СОХРАНЕНИЕ ВВЕДЕННЫХ ДАННЫХ РЕДАКТ. ПРОФИЛЯ
-const formElement = document.querySelector('.popup__edit'); // Находим форму в DOM
+const formEditProfile = document.querySelector('.popup__edit'); // Находим форму в DOM
 
 const nameInput = document.querySelector('#input-name'); // Находим поля формы в DOM
 const jobInput = document.querySelector('#input-job');
@@ -35,7 +40,7 @@ function formSubmitHandler(evt) {
   profileInfoAbout.textContent = jobInput.value;
   closePopup(popupEdit);
 }
-formElement.addEventListener('submit', formSubmitHandler); // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
+formEditProfile.addEventListener('submit', formSubmitHandler); // Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
 
 
 
@@ -51,31 +56,26 @@ profileAddClose.addEventListener('click', function (){    //Закрытие п�
   closePopup(popupMesto)
 });
 
-const mestoEdit = document.querySelector('#popup-mesto__edit').addEventListener('submit', AddCardSubmitHandler); // Выбрали форму добавления карточки в попапе и Добавили слушатель, который запустит функцию добавления карточки
+document.querySelector('#popup-mesto__edit').addEventListener('submit', addCardSubmitHandler); // Выбрали форму добавления карточки в попапе и Добавили слушатель, который запустит функцию добавления карточки
 const mestoTitle = document.querySelector('#input-title'); // Выбрали первый инпут формы 
 const mestoLink = document.querySelector('#input-link'); // Выбрали второй инпут формы
 const mestoElements = document.querySelector('.elements'); //Выбрали куда вставлять
 
 
 //ФУНКЦИЯ ДОБАВЛЕНИЯ КАРТОЧКИ, ЛАЙК, УДАЛЕНИЕ И ОШИБКА, ЕСЛИ ПОЛЯ ПУСТЫЕ
-function AddCardSubmitHandler(evt) {
+function addCardSubmitHandler(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  if (mestoTitle.value !== '' && mestoLink.value !== '') {     //Условие проверки пустой строки
-
-    const data = {                                       //Создаем объект с данными (name и link) из инпутов
+    const data = {                    //Создаем объект с данными (name и link) из инпутов
           name: mestoTitle.value,
           link: mestoLink.value,
         }
         renderCard(data, mestoElements);    //Вызываем функцию рендера карточки и аргументами, которые получены из инпутов
 
-    mestoTitle.value = '';
-    mestoLink.value = '';    //Очищаем поля ввода
+    closePopup(popupMesto); //Закрываем попап
+    evt.target.reset()   //Очищаем поля ввода
+  };
+ 
 
-    closePopup(popupMesto) //Закрываем попап
-  } else {
-    alert('Нужно заполнить все поля!');
-  }
-}
 
 //ФУНКЦИЯ ОТКРЫТИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#popup-img');  //Выбрали попап картинки (ему приделаем класс активности)
@@ -133,8 +133,8 @@ function createCard(data) {
   cardLink.alt = data.name;   //альт
   cardName.textContent = data.name;  //Название
 
-  const deleteButton = cardElement.querySelector('.card__button-delete'); // Выберем кнопку удаления
-  deleteButton.addEventListener('click', (evt) => {  // Добавим обработчик
+  const cardDeleteButton = cardElement.querySelector('.card__button-delete'); // Выберем кнопку удаления
+  cardDeleteButton.addEventListener('click', (evt) => {  // Добавим обработчик
     evt.target.closest('.card').remove();  //удаляем весь див
   });
 
