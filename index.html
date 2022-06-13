@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+
   <title>Mesto</title>
 </head>
 
@@ -24,78 +25,61 @@
         </div>
         <p class="profile__info-about">Исследователь океана</p>
       </div>
-      <button class="profile__add" type="button"></button>
+      <button class="profile__add" id="profile__add" type="button"></button>
     </section>
 
-    <section class="elements">
-
-      <article class="element">
-        <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-        <div class="element__title-container">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="element__title-container">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
-        <div class="element__title-container">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="element__title-container">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
-        <div class="element__title-container">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-        <div class="element__title-container">
-          <h2 class="element__title">Карачаево-Черкессия</h2>
-          <button class="element__button" type="button"></button>
-        </div>
-      </article>
-
-    </section>
+    <section class="elements"></section>
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
-  <section class="popup">  <!--popup_opened-->
+  <section class="popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__edit" name="edit-form">
-        <input class="popup__input" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
-        <input class="popup__input" type="text" name="about" placeholder="О себе" value="Исследователь океана">
+        <input id="input-name" class="popup__input" type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто">
+        <input id="input-job" class="popup__input" type="text" name="about" placeholder="О себе"
+          value="Исследователь океана">
         <button class="popup__save" type="submit">Сохранить</button>
       </form>
       <button class="popup__close" type="button"></button>
     </div>
   </section>
 
+  <section class="popup" id="popup-mesto">
+    <div class="popup__container" id="popup-mesto__container">
+      <h2 class="popup__title" id="popup-mesto__title">Новое место</h2>
+      <form class="popup__edit" id="popup-mesto__edit" name="edit-form">
+        <input class="popup__input" id="input-title" type="text" name="title" placeholder="Название">
+        <input class="popup__input" id="input-link" type="text" name="link" placeholder="Ссылка на картинку">
+        <button class="popup__save" id="popup-mesto__save" type="submit">Создать</button>
+      </form>
+      <button class="popup__close" id="popup-mesto__close" type="button"></button>
+    </div>
+  </section>
+
+  <section class="popup" id="popup-img">
+    <div class="popup-img__container" id="popup-img__container">
+      <img class="popup-img__image" src="" alt="">
+      <button class="popup__close" id="popup-img__close" type="button"></button>
+      <h2 class="popup-img__title" id="popup-img__title"></h2>
+    </div>
+  </section>
+
+  <template id="card-template">
+    <article class="card">
+      <img class="card__image" src="" alt="">
+      <button class="card__button-delete" type="button"></button>
+      <div class="card__title-container">
+        <h2 class="card__title"></h2>
+        <button class="card__button-like" type="button"></button>
+      </div>
+    </article>
+  </template>
+
+  <script src="./script/index.js"></script>
 </body>
 
 </html>
