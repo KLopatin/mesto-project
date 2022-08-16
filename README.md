@@ -1,4 +1,5 @@
 # Проект: Место
+Ссылка на GitHub Pages: https://klopatin.github.io/mesto-project/
 ____
 ### Обзор
 * Интро
