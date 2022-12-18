@@ -21,11 +21,6 @@
     border-radius: 5px;
 }
 
-/* .popup__input:invalid {
-    border: 3px solid #ffdddd;
-    border-radius: 5px;
-  } */
-
 @media (max-width: 600px) {
     .popup__input {
         width: 238px;
