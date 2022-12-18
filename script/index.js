@@ -69,4 +69,4 @@ function renderCard(evt) {
     link.value = '';
     popupClose(popupAdd);   //Закрыли попап
 };
-mestoEdit.addEventListener('submit', renderCard)
+mestoEdit.addEventListener('submit', renderCard);
