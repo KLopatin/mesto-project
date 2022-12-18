@@ -29,35 +29,57 @@
     </section>
 
     <section class="elements"></section>
+
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
+
   <section class="popup" id="popup-edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__edit" name="edit-form">
-        <input id="input-name" class="popup__input" type="text" required name="name" placeholder="Имя" value="">
-        <input id="input-job" class="popup__input" type="text" required name="about" placeholder="О себе" value="">
-        <button class="popup__save" type="submit">Сохранить</button>
-      </form>
+      <fieldset class="popup__fieldset">
+        <form class="popup__edit" name="edit-form" novalidate>
+
+          <input class="popup__input" id="input-name" type="text" required minlength='2' maxlength='40' name="name" placeholder="Имя" value=""> 
+          <span class="popup__input-error input-name-error"></span>
+
+          <input  class="popup__input" id="input-job" type="text" required minlength='2' maxlength='40' name="about" placeholder="О себе" value="">
+          <span class="popup__input-error input-job-error"></span>
+          <button class="popup__save" type="submit">Сохранить</button>
+        </form>
+      </fieldset>
       <button class="popup__close" id="popup-edit__close" type="button"></button>
     </div>
   </section>
+  
+
 
   <section class="popup" id="popup-mesto">
     <div class="popup__container" id="popup-mesto__container">
       <h2 class="popup__title" id="popup-mesto__title">Новое место</h2>
-      <form class="popup__edit" id="popup-mesto__edit" name="edit-form">
-        <input class="popup__input" id="input-title" type="text" required name="title" placeholder="Название">
-        <input class="popup__input" id="input-link" type="text" required name="link" placeholder="Ссылка на картинку">
-        <button class="popup__save" id="popup-mesto__save" type="submit">Создать</button>
-      </form>
+      <fieldset class="popup__fieldset">
+        <form class="popup__edit" id="popup-mesto__edit" name="edit-form" novalidate>
+
+          <input class="popup__input" id="input-title" type="text" required minlength='3' maxlength='40' name="title" placeholder="Название">
+          <span class="popup__input-error input-title-error"></span>
+
+          <input class="popup__input" id="input-link" type="url" required minlength='2' maxlength='40000' name="link" placeholder="Ссылка на картинку">
+          <span class="popup__input-error input-link-error"></span>
+
+          <button class="popup__save" id="popup-mesto__save" type="submit">Создать</button>
+        </form>
+      </fieldset>
       <button class="popup__close" id="popup-mesto__close" type="button"></button>
     </div>
   </section>
+
+
+
+
+
 
   <section class="popup popup-image" id="popup-img">
     <div class="popup-img__container" id="popup-img__container">
@@ -78,7 +100,10 @@
     </article>
   </template>
 
+  <!-- <script src="./components/index.js"></script>
+  <script src="./components/validation.js"></script> -->
   <script src="./script/index.js"></script>
+
 </body>
 
 </html>

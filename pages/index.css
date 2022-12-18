@@ -46,3 +46,75 @@
 @import url(../blocks/popup-img/__image/popup-img__image.css);
 @import url(../blocks/popup-img/__title/popup-img__title.css);
 @import url(../blocks/popup-img/-image/popup-image.css);
+
+.form__input_type_error {
+    border-bottom: 1px solid red;
+}
+
+.form__input-error_active {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    
+    color: red;
+    max-width: 358px;
+    display: block;
+}
+
+.input-name-error {
+    position: absolute;
+    top: 150px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-name-error {
+        top: 154px;
+        left: 21px;
+    }
+}
+
+.input-job-error {
+    position: absolute;
+    top: 211px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-job-error {
+        top: 217px;
+        left: 21px;
+    }
+}
+
+.input-title-error {
+    position: absolute;
+    top: 150px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-title-error {
+        top: 154px;
+        left: 21px;
+    }
+}
+
+.input-link-error {
+    position: absolute;
+    top: 211px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-link-error {
+        top: 217px;
+        left: 21px;
+    }
+}
+.popup__fieldset {
+    border: none;
+    padding: 0;
+}
+
+.button_inactive {
+    display: none;
+}
