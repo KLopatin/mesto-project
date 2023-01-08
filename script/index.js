@@ -141,3 +141,4 @@ initialCardsReverse.forEach(function (card) {   //Перебираем масс�
   const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
   cardContainer.prepend(newCard); //Вставляем карточку в контейнер
 });
+//
