@@ -1,3 +1,34 @@
+
+const initialCards = [
+  {
+    name: 'Дубай',
+    link: 'https://images.unsplash.com/photo-1656403102555-c34ecc98e5aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://images.unsplash.com/photo-1667059979192-a301b284fe87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  },
+  {
+    name: 'Швейцария',
+    link: 'https://images.unsplash.com/photo-1554747454-e0c176da447c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+  },
+  {
+    name: 'Камчатский край',
+    link: 'https://images.unsplash.com/photo-1536383794906-773f6a5210be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80'
+  },
+  {
+    name: 'Иран',
+    link: 'https://images.unsplash.com/photo-1594322665827-f257ed9ac92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=711&q=80'
+  },
+  {
+    name: 'Канада',
+    link: 'https://images.unsplash.com/photo-1502003148287-a82ef80a6abc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
+  }
+];
+
+const cardContainer = document.querySelector('.elements'); //Нашли куда будем вставлять карточки (див где будут все карточки)
+
+
 const popupEdit = document.querySelector('#popup-edit');  //Нашли сам попап редактирования профиля
 const popupEditButtonOpen = document.querySelector('.profile__edit');  //Нашли кнопку открытия попапа редактирования профиля
 const popupEditButtonClose = document.querySelector('#popup-edit__close');  //Нашли кнопку закрытия попапа редактирования профиля
@@ -49,11 +80,12 @@ formElement.addEventListener('submit', handleFormSubmit);  //Вызываем ф
 
 //ФУНКЦИЯ ДОБАВЛЕНИЯ КАРТОЧКИ ИЗ ФОРМЫ
 const mestoEdit = document.querySelector('[name="add-form"]');  //Нашли форму добавления карточки
+const title = document.querySelector('#input-title');   //Нашли инпут с названием
+const link = document.querySelector('#input-link');   //Нашли инпут с cсылкой
 
 function renderCard(evt) {    
     evt.preventDefault();
-    const title = document.querySelector('#input-title');   //Нашли инпут с названием
-    const link = document.querySelector('#input-link');   //Нашли инпут с cсылкой
+    
     cardContainer.prepend(createCard(title.value, link.value));  //Вызываем фукн-ю createCard со значениями из инпутов
     mestoEdit.reset();   //Очистили форму
     popupClose(popupAdd);   //Закрыли попап
@@ -61,32 +93,7 @@ function renderCard(evt) {
 mestoEdit.addEventListener('submit', renderCard);
 //--------------------------------------------
 
-const initialCards = [
-  {
-    name: 'Дубай',
-    link: 'https://images.unsplash.com/photo-1656403102555-c34ecc98e5aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://images.unsplash.com/photo-1667059979192-a301b284fe87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    name: 'Швейцария',
-    link: 'https://images.unsplash.com/photo-1554747454-e0c176da447c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
-  },
-  {
-    name: 'Камчатский край',
-    link: 'https://images.unsplash.com/photo-1536383794906-773f6a5210be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80'
-  },
-  {
-    name: 'Иран',
-    link: 'https://images.unsplash.com/photo-1594322665827-f257ed9ac92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=711&q=80'
-  },
-  {
-    name: 'Канада',
-    link: 'https://images.unsplash.com/photo-1502003148287-a82ef80a6abc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
-  }
-];
+
 
 const initialCardsReverse = initialCards.reverse();  //Разворачиваем массив, чтобы карточки рендерились в правильном порядке, тк каждый объект ставится в начало
 
@@ -136,7 +143,7 @@ function createCard(name, link) {
 };
 //--------------------------------------------
 
-const cardContainer = document.querySelector('.elements'); //Нашли куда будем вставлять карточки (див где будут все карточки)
+
 initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
   const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
   cardContainer.prepend(newCard); //Вставляем карточку в контейнер
