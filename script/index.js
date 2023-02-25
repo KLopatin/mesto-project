@@ -1,4 +1,4 @@
-
+(function () {
 const initialCards = [
   {
     name: 'Дубай',
@@ -59,6 +59,33 @@ popupEditButtonClose.addEventListener('click', function () { popupClose(popupEdi
 
 popupAddButtonOpen.addEventListener('click', function () { popupOpen(popupAdd) });   //Повесили обработчик на кнопку доб. карточки -> открывает попап
 popupAddButtonClose.addEventListener('click', function () { popupClose(popupAdd) });  //Повесили обработчик на кнопку Закрытия попапа доб. карточки -> закрывает попап
+
+//Закрытие на оверлэй и esc
+// popupEdit.addEventListener('click', function (evt) {    //Повесели слушатель на весь попап
+//   if (evt.target.classList.contains('overlay')) {  //проверяем, чтобы клик был на оверлэе
+//     popupClose(popupEdit);   //Закрываем попап
+//   }
+// });
+// document.addEventListener('keydown', function (evt) {
+//   if (evt.key === 'Escape') {  //проверяем, чтобы нажалась клавиша esc
+//     popupClose(popupEdit);    //Закрываем попап
+//   }
+// });
+
+// document.addEventListener('click', function (evt) {    //Повесели слушатель на весь попап
+//   if (evt.target.classList.contains('overlay')) {  //проверяем, чтобы клик был на оверлэе
+//     popupClose(popupAdd);   //Закрываем попап
+//     popupClose(popupEdit);
+//   }
+// });
+// document.addEventListener('keydown', function (evt) {
+//   if (evt.key === 'Escape') {  //проверяем, чтобы нажалась клавиша esc
+//     popupClose(popupAdd);    //Закрываем попап
+//     popupClose(popupEdit);
+//   }
+// });
+
+
 //--------------------------------------------
 
 //СОХРАНЕНИЕ ИМЕНИ И ПРОФЕССИИ
@@ -115,6 +142,33 @@ function openImg(element) {
 };
 //--------------------------------------------
 
+// popupImg.addEventListener('click', function (evt) {    //Повесели слушатель на весь попап
+//   if (evt.target.classList.contains('overlay')) {  //проверяем, чтобы клик был на оверлэе
+//     popupClose(popupImg);   //Закрываем попап
+//   }
+// });
+// document.addEventListener('keydown', function (evt) {
+//   if (evt.key === 'Escape') {  //проверяем, чтобы нажалась клавиша esc
+//     popupClose(popupImg);    //Закрываем попап
+//   }
+// });
+
+document.addEventListener('click', function (evt) {    //Повесели слушатель на весь документ
+  if (evt.target.classList.contains('overlay')) {  //проверяем, чтобы клик был на оверлэе
+    popupClose(popupAdd);   //Закрываем попап
+    popupClose(popupEdit);
+    popupClose(popupImg);
+  }
+});
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {  //проверяем, чтобы нажалась клавиша esc
+    popupClose(popupAdd);    //Закрываем попап
+    popupClose(popupEdit);
+    popupClose(popupImg);
+  }
+});
+
+
 //ФУНКЦИЯ ИМЕННО СОЗДАНИЯ ШАБЛОНА КАРТОЧКИ
 const cardTemplate = document.querySelector('#card-template').content;   //Выбрали контент темплейта
 
@@ -149,5 +203,6 @@ initialCardsReverse.forEach(function (card) {   //Перебираем масс�
   cardContainer.prepend(newCard); //Вставляем карточку в контейнер
 });
 
+})();
 
 //:3

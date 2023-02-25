@@ -1,56 +1,75 @@
-// const form = document.querySelector('.popup__edit');  //выбрали форму
-// const formInput = form.querySelector('.popup__input');  //выбрали инпут
-// const formError = form.querySelector(`.${formInput.id}-error`) //Выбрали уникальный спан, который связан с инпутом
+const form = document.querySelector('.popup__edit'); //Нашли форму
+const formInput = form.querySelector('.popup__input'); //Нашли инпут
+const formError = form.querySelector(`.${formInput.id}-error`);  //Нашли спан ошибки по уникальному классу
 
-
-const showInputError = (formElement, inputElement, errorMessage) => {  //Принимает на вход какой-то инпут и сообщение об ошибке
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('form__input_type_error');  //Добавляем класс который добавляет стили невалидных данных
-    errorElement.textContent = errorMessage;   //Меняем текст спана
-    errorElement.classList.add('form__input-error_active');  //Добавляем класс, который активирует видимость спана
-}
-
-const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('form__input_type_error'); 
-    errorElement.classList.remove('form__input-error_active');
-    errorElement.textContent = '';
-}
-
-const checkInputValidity = (formElement, inputElement) => {   //Проверка валидности ИНПУТА
-    if (!inputElement.validity.valid) {  //Если инпут не валидный - функция показа ошибки
-        showInputError(formElement, inputElement, inputElement.validationMessage)  //принимает инпут в который вводятся данные и стандартный текст ошибки
-    } else {
-        hideInputError(formElement, inputElement)   //Иначе скрой ошибку
-    }
+const showInputError = (formElement, inputElement, errorMessage) => {   
+  inputElement.classList.add('popup__input_type_error') //Добавляем класс показывающий стили ошибки
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); //Нашли спан ошибки по уникальному классу ИМЕННО ПРОВЕРЯЕМОГО ПОЛЯ
+  errorElement.textContent = errorMessage;  //Поменяли текст на текст ошибки
+  errorElement.classList.add('popup__input-error_active'); //Добавили класс. Это сделает ошибку видимой, когда в поле ввода добавят некорректный текст.
 };
 
-// form.addEventListener('submit', function (evt) {   //Сброс настроек формы (браузерных)
-//     evt.preventDefault();
-//   });
+const hideInputError = (formElement, inputElement) => {   
+  inputElement.classList.remove('popup__input_type_error'); //Убираем класс показывающий стили ошибки
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); //Нашли спан ошибки по уникальному классу ИМЕННО ПРОВЕРЯЕМОГО ПОЛЯ
+  errorElement.classList.remove('popup__input-error_active');
+  errorElement.textContent = ''; //Текст - пустая строка, чтобы не было видно ошибки
+};
 
-// formInput.addEventListener('input', function () {   //при вводе данных - срабатывает функция проверки формы
-//     checkInputValidity(form, formInput);
-//   });
+const checkInputValidity = (formElement, inputElement) => {   //функция проверяет валидность инпута(formInput) и показывает или скрывает ошибку
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage)
+  } else {
+    hideInputError(formElement, inputElement)
+  }
+};
 
-  const setEventListeners = (formElement) => {  //Вешаем слушатели на все инпуты
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'))  //Собираем массив всех инпутов
-    inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', function () {  //Каждому добавляем слушатель
-            checkInputValidity(formElement, inputElement);
-        });
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if(hasInvalidInput(inputList)) {
+    buttonElement.disabled = true;
+    buttonElement.classList.add('button_inactive');
+  } else {
+    buttonElement.disabled = false;
+    buttonElement.classList.remove('button_inactive');
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));  //Собираем массив инпутов
+  const buttonElement = formElement.querySelector('.popup__save'); //Выбираем кнопку
+   
+   toggleButtonState(inputList, buttonElement); // чтобы проверить состояние кнопки в самом начале
+
+  inputList.forEach((inputElement) => {
+  inputElement.addEventListener('input', function () {   //Каждому вешаем слушатель 
+    checkInputValidity(formElement, inputElement);   //Проверяем Валидность каждого инпута
+    
+    toggleButtonState(inputList, buttonElement); // чтобы проверять его при изменении любого из полей
+  });
+});
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.popup__edit')); //Собираем массив всех форм
+  formList.forEach((formElement) => {
+  formElement.addEventListener('submit', (evt) => { //Вешаем на все формы слушатели
+    evt.preventDefault();  //Сбрасываем стандартное поведение
     });
-  };
-  
-  const enableValidation = () => {    //Функция работы со всеми формами на сайте
-    const formList = Array.from(document.querySelectorAll('.popup__edit'));  //Собираем массив всех форм
-    formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {   //Сбрасываем браузерные настройки и запускаем функцию, которая вешает слушатели на все инпуты
-      evt.preventDefault();   //Сброс настроек формы (браузерных)
-        });
-  
-      setEventListeners(formElement);
-    }); 
-  };
-  
-  enableValidation();
+    const fieldsetList = Array.from(formElement.querySelectorAll('.popup__fieldset')); //Собираем массив филдсэтов
+    fieldsetList.forEach((fieldSet) => {
+      setEventListeners(fieldSet);  //Вешаем слушатели на все инпуты внутри филдсэтов
+      }); 
+  });
+};
+
+enableValidation();
+
+
+//-----------------------------------------------------------------------------------------------
+
