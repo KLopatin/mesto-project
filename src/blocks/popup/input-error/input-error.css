@@ -1,0 +1,47 @@
+.input-name-error {
+    position: absolute;
+    top: 150px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-name-error {
+        top: 154px;
+        left: 21px;
+    }
+}
+
+.input-job-error {
+    position: absolute;
+    top: 211px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-job-error {
+        top: 217px;
+        left: 21px;
+    }
+}
+
+.input-title-error {
+    position: absolute;
+    top: 150px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-title-error {
+        top: 154px;
+        left: 21px;
+    }
+}
+
+.input-link-error {
+    position: absolute;
+    top: 211px;
+    left: 36px;
+}
+@media (max-width: 600px) {
+    .input-link-error {
+        top: 217px;
+        left: 21px;
+    }
+}
