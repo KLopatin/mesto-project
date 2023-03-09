@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 import {initialCards, cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formElement, nameInput, jobInput, profileName,
   profileJob, mestoEdit, title, link, initialCardsReverse, popupImg, imgLink, imgName, popupImgClose, cardTemplate, settings} from './components/constants.js'
 import {closePopupOverlay, closePopupEsc, popupOpen, popupClose, addValueToTextcontent, openImg} from './components/modal.js'
