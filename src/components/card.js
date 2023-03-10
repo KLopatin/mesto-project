@@ -1,19 +1,10 @@
-import {initialCards, cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formElement, nameInput, jobInput, profileName,
-    profileJob, mestoEdit, title, link, initialCardsReverse, popupImg, imgLink, imgName, popupImgClose, cardTemplate} from './constants.js'
-    import {closePopupOverlay, closePopupEsc, popupOpen, popupClose, addValueToTextcontent, openImg} from './modal.js'    
-//ФУНКЦИЯ РЕНДЕРА КАРТОЧКИ
-function renderCard(evt) {    
-    evt.preventDefault();
-    
-    cardContainer.prepend(createCard(title.value, link.value));  //Вызываем фукн-ю createCard со значениями из инпутов
-    mestoEdit.reset();   //Очистили форму
-    popupClose(popupAdd);   //Закрыли попап
-};
+import {cardContainer,initialCardsReverse, cardTemplate} from './constants.js'  
+import {openImg} from '../index.js'
 
-//--------------------------------------------
+
 
 //ФУНКЦИЯ ИМЕННО СОЗДАНИЯ ШАБЛОНА КАРТОЧКИ
-function createCard(name, link, ) {
+function createCard(name, link) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);  //Скопировали содержимое темплейта
     const cardImg = cardElement.querySelector('.card__image'); //Выбираем картинку
     const cardName = cardElement.querySelector('.card__title'); //Выбираем заголовок
@@ -39,9 +30,9 @@ function createCard(name, link, ) {
   //--------------------------------------------
   
   
-  // initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
-  //   const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
-  //   cardContainer.prepend(newCard); //Вставляем карточку в контейнер
-  // });
+  initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
+    const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
+    cardContainer.prepend(newCard); //Вставляем карточку в контейнер
+  });
 
-  export {renderCard, createCard}
+  export {createCard}

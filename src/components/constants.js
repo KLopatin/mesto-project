@@ -26,6 +26,9 @@ const initialCards = [
   },
 ];
 
+const mestoSave = document.querySelector('#popup-mesto__save');
+
+
 const cardContainer = document.querySelector(".elements"); //Нашли куда будем вставлять карточки (див где будут все карточки)
 
 const popupEdit = document.querySelector("#popup-edit"); //Нашли сам попап редактирования профиля
@@ -37,7 +40,7 @@ const popupAddButtonOpen = document.querySelector("#profile__add"); //Нашли
 const popupAddButtonClose = document.querySelector("#popup-mesto__close"); //Нашли кнопку закрытия попапа добавления карточки
 
 //СОХРАНЕНИЕ ИМЕНИ И ПРОФЕССИИ
-const formElement = popupEdit.querySelector('.popup__edit');  // Находим форму в DOM
+const formProfileElement = popupEdit.querySelector('.popup__edit');  // Находим форму в DOM
 const nameInput = popupEdit.querySelector('#input-name');  // Находим инпуты формы в DOM
 const jobInput = popupEdit.querySelector('#input-job');
 
@@ -67,6 +70,7 @@ const formError = form.querySelector(`.${formInput.id}-error`);  //Нашли с
 
 const settings = {
   formSelector: '.popup__edit',
+  fieldsetSelector: '.popup__fieldset',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
   inactiveButtonClass: 'button_inactive',
@@ -75,6 +79,6 @@ const settings = {
 }; 
 
 
-export {initialCards, cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formElement,
+export {initialCards, cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formProfileElement,
 nameInput, jobInput, profileName, profileJob, mestoEdit, title, link, initialCardsReverse, popupImg, imgLink, imgName, popupImgClose, cardTemplate, form,
-formInput, formError, settings};
+formInput, formError, settings, mestoSave};
