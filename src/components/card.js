@@ -1,14 +1,19 @@
-import {cardContainer,initialCardsReverse, cardTemplate} from './constants.js'  
+import {cardTemplate} from './constants.js'  
 import {openImg} from '../index.js'
 
 
 
 //ФУНКЦИЯ ИМЕННО СОЗДАНИЯ ШАБЛОНА КАРТОЧКИ
-function createCard(name, link) {
+function createCard(name, link, serverlikes) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);  //Скопировали содержимое темплейта
     const cardImg = cardElement.querySelector('.card__image'); //Выбираем картинку
     const cardName = cardElement.querySelector('.card__title'); //Выбираем заголовок
-  
+    const cardLike = cardElement.querySelector('.card__like-counter')  
+    // console.log(serverlikes)
+    if (serverlikes.length !== 0){
+      cardLike.textContent = serverlikes.length;
+    }
+    
     cardImg.src = link;
     cardImg.alt = name;  //Присваиваем что и куда будет подставляться (link в src)
     cardName.textContent = name; //(name в alt и textContent)
@@ -28,11 +33,6 @@ function createCard(name, link) {
     return cardElement;   //Возвращаем собранную карточку
   };
   //--------------------------------------------
-  
-  
-  initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
-    const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
-    cardContainer.prepend(newCard); //Вставляем карточку в контейнер
-  });
+
 
   export {createCard}
