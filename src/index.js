@@ -1,19 +1,21 @@
 import './pages/index.css';
 
-import {initialCards, cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formElement, nameInput, jobInput, profileName,
-  profileJob, mestoEdit, title, link, initialCardsReverse, popupImg, imgLink, imgName, popupImgClose, cardTemplate, settings} from './components/constants.js'
-import {closePopupOverlay, closePopupEsc, popupOpen, popupClose, addValueToTextcontent, openImg} from './components/modal.js'
-import {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation} from './components/validate.js'
-import {renderCard, createCard} from './components/card.js'
+import {popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formElement, nameInput, jobInput, profileName,
+  profileJob, mestoEdit,popupImgClose,settings} from './components/constants.js'
+import {popupOpen, popupClose, addValueToTextcontent,} from './components/modal.js'
+import {enableValidation} from './components/validate.js'
+import {renderCard} from './components/card.js'
+
+import {getCards, getProfile} from './components/api.js'
 
 //ИЗМЕНЯЕМ ИМЯ И ОПИСАНИЕ ПРОФИЛЯ
-function handleFormSubmit(evt) {
+function changeDataProfile(evt) {
   evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
   profileName.textContent = nameInput.value;  // Получите значение полей jobInput и nameInput из свойства value
   profileJob.textContent = jobInput.value;  // Вставьте новые значения с помощью textContent
   popupClose(popupEdit);  //Не забыть закрыть попап
 };
-formElement.addEventListener('submit', handleFormSubmit);  //Вызываем функцию при отправке формы
+formElement.addEventListener('submit', changeDataProfile);  //Вызываем функцию при отправке формы
 //--------------------------------------------
 
 
@@ -37,5 +39,8 @@ mestoEdit.addEventListener('submit', renderCard);
 
 //ВЫЗОВ ФУНКЦИИ ВАЛИДАЦИИ
 enableValidation(settings);
+
+getCards();
+getProfile()
 
 //:3

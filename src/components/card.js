@@ -13,7 +13,7 @@ function renderCard(evt) {
 //--------------------------------------------
 
 //ФУНКЦИЯ ИМЕННО СОЗДАНИЯ ШАБЛОНА КАРТОЧКИ
-function createCard(name, link) {
+function createCard(name, link, ) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);  //Скопировали содержимое темплейта
     const cardImg = cardElement.querySelector('.card__image'); //Выбираем картинку
     const cardName = cardElement.querySelector('.card__title'); //Выбираем заголовок
@@ -39,9 +39,9 @@ function createCard(name, link) {
   //--------------------------------------------
   
   
-  initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
-    const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
-    cardContainer.prepend(newCard); //Вставляем карточку в контейнер
-  });
+  // initialCardsReverse.forEach(function (card) {   //Перебираем массив форичем
+  //   const newCard = createCard(card.name, card.link) //Записываем в переменную - собранную карточку из функции createCard
+  //   cardContainer.prepend(newCard); //Вставляем карточку в контейнер
+  // });
 
   export {renderCard, createCard}

@@ -1,4 +1,4 @@
-import {form, formInput, formError, settings} from './constants.js'
+import {settings} from './constants.js'
 
 const showInputError = (formElement, inputElement, errorMessage) => {   
   inputElement.classList.add(settings.inputErrorClass) //Добавляем класс показывающий стили ошибки

@@ -1,9 +1,11 @@
 .card {
     border-radius: 10px;
     background-color: #fff;
-    max-width: 282px;
+    width: 282px;
     justify-self: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 

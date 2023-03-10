@@ -20,7 +20,7 @@ function closePopupEsc(evt) {
 
 function popupOpen(popupElement) {
   popupElement.classList.add('popup_opened');  //Создали универсальную функцию открытия любых попапов
-  popupElement.addEventListener('click', closePopupOverlay);
+  popupElement.addEventListener('mousedown', closePopupOverlay);
   document.addEventListener('keydown', closePopupEsc);
 };
 
