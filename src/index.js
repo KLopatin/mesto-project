@@ -25,7 +25,7 @@ import {
   profileAvatar,
 } from "./components/constants.js";
 
-import { popupOpen, popupClose } from "./components/modal.js";
+import { openPopup, closePopup } from "./components/modal.js";
 import { enableValidation, disablePopupButton } from "./components/validate.js";
 import { createCard } from "./components/card.js";
 import { getCards, getProfile, changeInfoProfile, addNewCard} from "./components/api.js";
@@ -33,7 +33,7 @@ import { getCards, getProfile, changeInfoProfile, addNewCard} from "./components
 Promise.all([getCards(), getProfile()])
   .then((result) => {
     result[0].forEach((res) => {
-      const newCard = createCard(res.name, res.link, res.likes); //Записываем в переменную - собранную карточку из функции createCard
+      const newCard = createCard(res.name, res.link, res.likes, res.id); //Записываем в переменную - собранную карточку из функции createCard
       cardContainer.prepend(newCard); //Вставляем карточку в контейнер
     }),
     profileName.textContent = result[1].name;
@@ -52,7 +52,7 @@ function renderCard(evt) {
   cardContainer.prepend(createCard(title.value, link.value)); //Вызываем фукн-ю createCard со значениями из инпутов
   addNewCard(title.value, link.value)
   mestoEdit.reset(); //Очистили форму
-  popupClose(popupAdd); //Закрыли попап
+  closePopup(popupAdd); //Закрыли попап
 }
 //--------------------------------------------
 
@@ -62,7 +62,7 @@ function changeDataProfile(evt) {
   profileName.textContent = nameInput.value; // Получите значение полей jobInput и nameInput из свойства value
   profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
   changeInfoProfile(nameInput.value, jobInput.value);
-  popupClose(popupEdit); //Не забыть закрыть попап
+  closePopup(popupEdit); //Не забыть закрыть попап
 }
 formProfileElement.addEventListener("submit", changeDataProfile); //Вызываем функцию при отправке формы
 //--------------------------------------------
@@ -76,25 +76,25 @@ function addValueToTextcontent(popup) {
 popupEditButtonOpen.addEventListener("click", function () {
   //Повесили обработчик на кнопку редактирования профиля редакт.проф. -> открывает попап
   addValueToTextcontent(popupEdit); //Функция, которая подставляет значения в имени и работы в инпуты
-  popupOpen(popupEdit);
+  openPopup(popupEdit);
 });
 
 popupEditButtonClose.addEventListener("click", function () {
-  popupClose(popupEdit);
+  closePopup(popupEdit);
 }); //Повесили обработчик на кнопку Закрытия попапа редакт.проф. -> закрывает попап
 
 popupAddButtonOpen.addEventListener("click", function () {
-  popupOpen(popupAdd);
+  openPopup(popupAdd);
   disablePopupButton(settings, mestoSave);
 }); //Повесили обработчик на кнопку доб. карточки -> открывает попап
 
 popupAddButtonClose.addEventListener("click", function () {
-  popupClose(popupAdd);
+  closePopup(popupAdd);
 }); //Повесили обработчик на кнопку Закрытия попапа доб. карточки -> закрывает попап
 
 popupImgClose.addEventListener("click", function () {
   //Закрытие попапа картинки
-  popupClose(popupImg);
+  closePopup(popupImg);
 });
 
 mestoEdit.addEventListener("submit", renderCard);
@@ -104,7 +104,7 @@ export function openImg(element) {
   imgLink.src = element.src; //Подставляем значения из массива
   imgLink.alt = element.alt;
   imgName.textContent = element.alt;
-  popupOpen(popupImg);
+  openPopup(popupImg);
 }
 
 //ВЫЗОВ ФУНКЦИИ ВАЛИДАЦИИ

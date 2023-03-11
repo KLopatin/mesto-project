@@ -34,7 +34,7 @@ export function getProfile() {
 //Изменение информации о пользоватале
 export function changeInfoProfile(userName, userAbout) {
   return fetch(`${config.baseUrl}/users/me`, {
-    method: 'PATCH',
+    method: "PATCH",
     headers: config.headers,
     body: JSON.stringify({
       name: userName,
@@ -45,7 +45,7 @@ export function changeInfoProfile(userName, userAbout) {
 
 export function addNewCard(cardName, cardLink) {
   return fetch(`${config.baseUrl}/cards`, {
-    method: 'POST',
+    method: "POST",
     headers: config.headers,
     body: JSON.stringify({
       name: cardName,
@@ -54,3 +54,9 @@ export function addNewCard(cardName, cardLink) {
   }).then((res) => checkResult(res));
 }
 
+export function deleteCard(id) {
+  return fetch(`${config.baseUrl}/cards/${id}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then((res) => checkResult(res));
+}
