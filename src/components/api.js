@@ -60,3 +60,27 @@ export function deleteCard(id) {
     headers: config.headers,
   }).then((res) => checkResult(res));
 }
+
+export function addLike(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: "PUT",
+    headers: config.headers,
+  }).then((res) => checkResult(res));
+}
+
+export function deleteLike(id) {
+  return fetch(`${config.baseUrl}/cards/likes/${id}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then((res) => checkResult(res));
+}
+
+export function changeAvatar(userAvatar) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: "PATCH",
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: userAvatar
+    }),
+  }).then((res) => checkResult(res));
+}

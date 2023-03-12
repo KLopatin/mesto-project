@@ -1,8 +1,5 @@
 /*ОБЪЯВЛЕНИЕ КОНСТАНТ*/
 
-let serverLikesCard;
-
-const mestoSave = document.querySelector('#popup-mesto__save');
 const profileAvatar = document.querySelector('.profile__avatar')
 
 const cardContainer = document.querySelector(".elements"); //Нашли куда будем вставлять карточки (див где будут все карточки)
@@ -10,10 +7,18 @@ const cardContainer = document.querySelector(".elements"); //Нашли куда
 const popupEdit = document.querySelector("#popup-edit"); //Нашли сам попап редактирования профиля
 const popupEditButtonOpen = document.querySelector(".profile__edit"); //Нашли кнопку открытия попапа редактирования профиля
 const popupEditButtonClose = document.querySelector("#popup-edit__close"); //Нашли кнопку закрытия попапа редактирования профиля
+const popupEditSave = document.querySelector(".popup__save");
 
 const popupAdd = document.querySelector("#popup-mesto"); //Нашли сам попап добавления карточки
 const popupAddButtonOpen = document.querySelector("#profile__add"); //Нашли кнопку открытия попапа добавления карточки
 const popupAddButtonClose = document.querySelector("#popup-mesto__close"); //Нашли кнопку закрытия попапа добавления карточки
+
+const popupAvatar = document.querySelector("#popup-avatar");
+const popupAvatarButtonClose = document.querySelector("#popup-avatar__close");
+const popupAvatarButtonOpen = document.querySelector("#profile__avatar");
+const popupAvatarForm = document.querySelector('[name="add-avatar-form"]');
+const popupAvatarInput = document.querySelector("#input-avatar-link");
+const popupAvatarSave = document.querySelector("#popup-avatar__save");
 
 //СОХРАНЕНИЕ ИМЕНИ И ПРОФЕССИИ
 const formProfileElement = popupEdit.querySelector('.popup__edit');  // Находим форму в DOM
@@ -27,8 +32,7 @@ const profileJob = document.querySelector('.profile__info-about');
 const mestoEdit = document.querySelector('[name="add-form"]');  //Нашли форму добавления карточки
 const title = document.querySelector('#input-title');   //Нашли инпут с названием
 const link = document.querySelector('#input-link');   //Нашли инпут с cсылкой
-
-// const initialCardsReverse = initialCards.reverse();  //Разворачиваем массив, чтобы карточки рендерились в правильном порядке, тк каждый объект ставится в начало
+const mestoSave = document.querySelector('#popup-mesto__save');
 
 //ФУНКЦИЯ ОТКРЫТИЯ КАРТИНКИ ИЗ КАРТОЧКИ
 const popupImg = document.querySelector('#popup-img') //Нашли сам попап
@@ -54,7 +58,6 @@ const settings = {
   errorClass: 'popup__input-error_active'
 }; 
 
-
 export {cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formProfileElement,
 nameInput, jobInput, profileName, profileJob, mestoEdit, title, link, popupImg, imgLink, imgName, popupImgClose, cardTemplate, form,
-formInput, formError, settings, mestoSave, profileAvatar};
+formInput, formError, settings, mestoSave, profileAvatar, popupAvatar, popupAvatarButtonClose, popupAvatarButtonOpen, popupAvatarForm, popupAvatarInput, popupAvatarSave, popupEditSave};

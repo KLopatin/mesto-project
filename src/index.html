@@ -15,7 +15,10 @@
   <main class="content">
 
     <section class="profile">
-      <img class="profile__avatar" src="" alt="Аватар">
+      
+      <button class="profile__button-avatar" id="profile__avatar" type="button">
+        <img class="profile__avatar" src="" alt="Аватар">
+      </button>
       
       <div class="profile__info">
         <div class="profile__name-container">
@@ -82,13 +85,29 @@
             data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
             <span class="popup__input-error input-title-error"></span>
 
-            <input class="popup__input" id="input-link" type="url"  required minlength='2' name="link" placeholder="Ссылка на картинку">
+            <input class="popup__input" id="input-link" type="url" required minlength='2' name="link" placeholder="Ссылка на картинку">
             <span class="popup__input-error input-link-error"></span>
           
             <button class="popup__save" id="popup-mesto__save" type="submit">Создать</button>
           </fieldset>
         </form>
       <button class="popup__close" id="popup-mesto__close" type="button"></button>
+    </div>
+  </section>
+
+
+  <section class="popup overlay" id="popup-avatar">
+    <div class="popup__container" id="popup-avatar__container">
+      <h2 class="popup__title" id="popup-avatar__title">Обновить аватар</h2>
+        <form class="popup__edit popup-avatar__edit" id="popup-avatar__edit" name="add-avatar-form" novalidate>
+         <fieldset class="popup__fieldset">
+            <input class="popup__input popup__input_avatar" id="input-avatar-link" type="url" required minlength='2' name="link" placeholder="Ссылка на картинку">
+            <span class="popup__input-error input-avatar-link-error"></span>
+          
+            <button class="popup__save" id="popup-avatar__save" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      <button class="popup__close" id="popup-avatar__close" type="button"></button>
     </div>
   </section>
 

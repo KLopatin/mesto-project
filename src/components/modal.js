@@ -9,7 +9,6 @@ function closePopupOverlay(evt) {
 };
 
 function closePopupEsc(evt) {
-
   if (evt.key === 'Escape') {  //проверяем, чтобы нажалась клавиша esc
     const opened = document.querySelector('.popup_opened');
     closePopup(opened);  //Закрываем попап

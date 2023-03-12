@@ -1,11 +1,11 @@
-@import url(../vendor/normalize.css);
-@import url(../vendor/fonts.css);
-@import url(../blocks/page/page.css);
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
+@import url("../blocks/page/page.css");
 /*Header*/
-@import url(../blocks/header/header.css);
-@import url(../blocks/header/__logo/header__logo.css);
+@import url("../blocks/header/header.css");
+@import url("../blocks/header/__logo/header__logo.css");
 /*Profile*/
-@import url(../blocks/profile/profile.css);
+@import url("../blocks/profile/profile.css");
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name-container/profile__name-container.css);
@@ -13,6 +13,7 @@
 @import url(../blocks/profile/__info-about/profile__info-about.css);
 @import url(../blocks/profile/__edit/profile__edit.css);
 @import url(../blocks/profile/__add/profile__add.css);
+@import url("../blocks/profile/__button-avatar/profile__button-avatar.css");
 /*Elements*/
 @import url(../blocks/elements/elements.css);
 /* Element */
@@ -26,6 +27,7 @@
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 /*Popup*/
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__avatar/popup__avatar.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__title/popup__title.css);
@@ -36,6 +38,7 @@
 @import url(../blocks/popup/__fieldset/popup__fieldset.css);
 @import url(../blocks/popup/__input/_type_error/popup__input_type_error.css);
 @import url(../blocks/popup/__input/-error_active/popup__input-error_active.css);
+@import url(../blocks/popup/__input/_avatar/popup__input_avatar.css);
 /*Input Errors*/
 @import url(../blocks/popup/input-error/input-error.css);
 /* Card */
@@ -48,9 +51,12 @@
 @import url(../blocks/card/__button-delete/card__button-delete.css);
 @import url(../blocks/card/__like-container/card__like-container.css);
 @import url(../blocks/card/__like-counter/card__like-counter.css);
-@import url(../blocks/card/__like-zero/card__like-zero.css);
 /*Popup-image*/
 @import url(../blocks/popup-img/__container/popup-img__container.css);
 @import url(../blocks/popup-img/__image/popup-img__image.css);
 @import url(../blocks/popup-img/__title/popup-img__title.css);
 @import url(../blocks/popup-img/-image/popup-image.css);
+
+.card__button-delete_disabled {
+    display: none;
+}
