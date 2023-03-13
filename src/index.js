@@ -29,10 +29,11 @@ import {
   popupAvatarForm,
   popupAvatarInput,
   popupAvatarSave,
-  popupEditSave
+  popupEditSave,
+  popups
 } from "./components/constants.js";
 
-import { openPopup, closePopup } from "./components/modal.js";
+import { openPopup, closePopup, closePopupOverlay } from "./components/modal.js";
 import { enableValidation, disablePopupButton } from "./components/validate.js";
 import { createCard } from "./components/card.js";
 import { getCards, getProfile, changeInfoProfile, addNewCard} from "./components/api.js";
@@ -51,7 +52,6 @@ Promise.all([getCards(), getProfile()])
     profileName.textContent = result[1].name;
     profileJob.textContent = result[1].about;
     profileAvatar.src = result[1].avatar;
-    console.log(result[1].avatar);
   })
   .catch((err) => {
     console.log(err);
@@ -65,6 +65,7 @@ function renderCard(evt) {
   .then((res) => {
     const newCard = createCard(res.name, res.link, res.likes, myId, res.owner._id, res._id, handleDeleteCard, handlePutLike, handleDeleteLike);
     cardContainer.prepend(newCard);
+    closePopup(popupAdd); //Закрыли попап
   })
   .catch((err) => {
     console.log(err);
@@ -73,7 +74,6 @@ function renderCard(evt) {
     mestoSave.textContent = "Сохранить";
   });
   mestoEdit.reset(); //Очистили форму
-  closePopup(popupAdd); //Закрыли попап
 }
 
 //Функция удаления карточки
@@ -120,7 +120,7 @@ function handleChangeAvatar() {
     profileAvatar.src = res.avatar;
     profileName.textContent = res.name;
     profileJob.textContent = res.about;
-    myId = res._id;
+    // myId = res._id;
     closePopup(popupAvatar);
     popupAvatarForm.reset();
   })
@@ -134,23 +134,14 @@ function handleChangeAvatar() {
 
 //Функция поменять ИМЯ И ОПИСАНИЕ ПРОФИЛЯ
 
-// function changeDataProfile(evt) {
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-//   profileName.textContent = nameInput.value; // Получите значение полей jobInput и nameInput из свойства value
-//   profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
-//   changeInfoProfile(nameInput.value, jobInput.value);
-//   closePopup(popupEdit); //Не забыть закрыть попап
-// }
-
 function changeDataProfile(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  profileName.textContent = nameInput.value; // Получите значение полей jobInput и nameInput из свойства value
-  profileJob.textContent = jobInput.value; // Вставьте новые значения с помощью textContent
   popupEditSave.textContent = "Сохранение...";
   changeInfoProfile(nameInput.value, jobInput.value)
   .then((res) => {
     profileName.textContent = res.name;
     profileJob.textContent = res.about;
+    closePopup(popupEdit);
   })
   .catch((err) => {
     console.log(err);
@@ -158,8 +149,6 @@ function changeDataProfile(evt) {
   .finally(() => {
       popupEditSave.textContent = "Сохранить";
     });
-
-  closePopup(popupEdit);
 }
 
 formProfileElement.addEventListener("submit", changeDataProfile); //Вызываем функцию при отправке формы
@@ -210,6 +199,12 @@ popupImgClose.addEventListener("click", function () {
   closePopup(popupImg);
 });
 
+
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', closePopupOverlay);
+});
+
+
 mestoEdit.addEventListener("submit", renderCard);
 
 //ФУНКЦИЯ ОТКРЫТИЯ КАРТИНКИ ИЗ КАРТОЧКИ
@@ -222,8 +217,4 @@ export function openImg(element) {
 
 //ВЫЗОВ ФУНКЦИИ ВАЛИДАЦИИ
 enableValidation(settings);
-
-getCards();
-getProfile();
-
 //:3

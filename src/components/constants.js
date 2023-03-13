@@ -1,6 +1,6 @@
 /*ОБЪЯВЛЕНИЕ КОНСТАНТ*/
-
-const profileAvatar = document.querySelector('.profile__avatar')
+const popups = document.querySelectorAll('.popup');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 const cardContainer = document.querySelector(".elements"); //Нашли куда будем вставлять карточки (див где будут все карточки)
 
@@ -60,4 +60,5 @@ const settings = {
 
 export {cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formProfileElement,
 nameInput, jobInput, profileName, profileJob, mestoEdit, title, link, popupImg, imgLink, imgName, popupImgClose, cardTemplate, form,
-formInput, formError, settings, mestoSave, profileAvatar, popupAvatar, popupAvatarButtonClose, popupAvatarButtonOpen, popupAvatarForm, popupAvatarInput, popupAvatarSave, popupEditSave};
+formInput, formError, settings, mestoSave, profileAvatar, popupAvatar, popupAvatarButtonClose, popupAvatarButtonOpen, popupAvatarForm,
+popupAvatarInput, popupAvatarSave, popupEditSave, popups};

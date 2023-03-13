@@ -1,5 +1,3 @@
-import {settings} from './constants.js'
-
 const showInputError = (formProfileElement, inputElement, errorMessage, settings) => {   
   inputElement.classList.add(settings.inputErrorClass) //Добавляем класс показывающий стили ошибки
   const errorElement = formProfileElement.querySelector(`.${inputElement.id}-error`); //Нашли спан ошибки по уникальному классу ИМЕННО ПРОВЕРЯЕМОГО ПОЛЯ
@@ -38,10 +36,17 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+//Функция блокировки кнопки отправки при добавлении карточки
+function disablePopupButton(settings, popupButton){
+  popupButton.disabled = true;
+  popupButton.classList.add(settings.inactiveButtonClass);
+};
+
 const toggleButtonState = (inputList, buttonElement, settings) => {
   if(hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(settings.inactiveButtonClass);
+    // buttonElement.disabled = true;
+    // buttonElement.classList.add(settings.inactiveButtonClass);
+    disablePopupButton(settings, buttonElement)
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(settings.inactiveButtonClass);
@@ -69,20 +74,15 @@ const enableValidation = (settings) => {
   formProfileElement.addEventListener('submit', (evt) => { //Вешаем на все формы слушатели
     evt.preventDefault();  //Сбрасываем стандартное поведение
     });
-    const fieldsetList = Array.from(formProfileElement.querySelectorAll(settings.fieldsetSelector)); //Собираем массив филдсэтов
-    fieldsetList.forEach((fieldSet) => {
-      setEventListeners(fieldSet, settings);  //Вешаем слушатели на все инпуты внутри филдсэтов
-      }); 
+    // const fieldsetList = Array.from(formProfileElement.querySelectorAll(settings.fieldsetSelector)); //Собираем массив филдсэтов
+    // fieldsetList.forEach((fieldSet) => {
+    //   setEventListeners(fieldSet, settings);  //Вешаем слушатели на все инпуты внутри филдсэтов
+    //   }); 
+    setEventListeners(formProfileElement, settings);
   });
 };
 
 
-//Функция блокировки кнопки отправки при добавлении карточки
-function disablePopupButton(settings, popupButton){
-  popupButton.disabled = true;
-  popupButton.classList.add(settings.inactiveButtonClass);
-};
-
-export {showInputError, hideInputError, checkInputValidity, hasInvalidInput, toggleButtonState, setEventListeners, enableValidation, disablePopupButton}
+export {enableValidation, disablePopupButton}
 
 
