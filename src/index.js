@@ -66,6 +66,7 @@ function renderCard(evt) {
     const newCard = createCard(res.name, res.link, res.likes, myId, res.owner._id, res._id, handleDeleteCard, handlePutLike, handleDeleteLike);
     cardContainer.prepend(newCard);
     closePopup(popupAdd); //Закрыли попап
+    mestoEdit.reset(); //Очистили форму
   })
   .catch((err) => {
     console.log(err);
@@ -73,7 +74,6 @@ function renderCard(evt) {
   .finally(() => {
     mestoSave.textContent = "Сохранить";
   });
-  mestoEdit.reset(); //Очистили форму
 }
 
 //Функция удаления карточки
