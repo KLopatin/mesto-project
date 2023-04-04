@@ -37,12 +37,22 @@ import { openPopup, closePopup, closePopupOverlay } from "./components/modal.js"
 import { enableValidation, disablePopupButton } from "./components/validate.js";
 import { createCard } from "./components/card.js";
 import { getCards, getProfile, changeInfoProfile, addNewCard} from "./components/api.js";
-import { deleteCard, addLike, deleteLike, changeAvatar} from './components/api.js'
-
+// import { deleteCard, addLike, deleteLike, changeAvatar} from './components/api.js'
+import Api from './components/api.js'
 
 let myId;
 
-Promise.all([getCards(), getProfile()])
+const api = new Api ({
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-20",
+  headers: {
+    authorization: "21e38aba-593f-4d28-b61c-f45be8c5d807",
+    "Content-Type": "application/json",
+  },
+});
+
+
+
+Promise.all([api.getCards(), api.getProfile()])
   .then((result) => {
     myId = result[1]._id
     result[0].reverse().forEach((res) => {
@@ -61,7 +71,7 @@ Promise.all([getCards(), getProfile()])
 function renderCard(evt) {
   evt.preventDefault();
   mestoSave.textContent = "Сохранение...";
-  addNewCard(title.value, link.value)
+  api.addNewCard(title.value, link.value)
   .then((res) => {
     const newCard = createCard(res.name, res.link, res.likes, myId, res.owner._id, res._id, handleDeleteCard, handlePutLike, handleDeleteLike);
     cardContainer.prepend(newCard);
@@ -78,7 +88,7 @@ function renderCard(evt) {
 
 //Функция удаления карточки
 function handleDeleteCard(cardId, currentCard) {
-  deleteCard(cardId)
+  api.deleteCard(cardId)
   .then(() => currentCard.remove())
   .catch((err) => {
     console.log(err);
@@ -87,7 +97,7 @@ function handleDeleteCard(cardId, currentCard) {
 
 //Функция поставить лайк
 function handlePutLike(cardId, buttonElement, counterLikes) {
-  addLike(cardId)
+  api.addLike(cardId)
   .then((res) => {
     counterLikes.textContent = res.likes.length
     buttonElement.classList.add('card__button-like_active')
@@ -99,7 +109,7 @@ function handlePutLike(cardId, buttonElement, counterLikes) {
 
 //Функция удалить лайк
 function handleDeleteLike(cardId, buttonElement, counterLikes) {
-  deleteLike(cardId)
+  api.deleteLike(cardId)
   .then((res) => {
     counterLikes.textContent = res.likes.length
     buttonElement.classList.remove('card__button-like_active')
@@ -115,7 +125,7 @@ function handleDeleteLike(cardId, buttonElement, counterLikes) {
 //Функция поменять аватар
 function handleChangeAvatar() {
   popupAvatarSave.textContent = "Сохранение...";
-  changeAvatar(popupAvatarInput.value)
+  api.changeAvatar(popupAvatarInput.value)
   .then((res) => {
     profileAvatar.src = res.avatar;
     profileName.textContent = res.name;
@@ -137,7 +147,7 @@ function handleChangeAvatar() {
 function changeDataProfile(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   popupEditSave.textContent = "Сохранение...";
-  changeInfoProfile(nameInput.value, jobInput.value)
+  api.changeInfoProfile(nameInput.value, jobInput.value)
   .then((res) => {
     profileName.textContent = res.name;
     profileJob.textContent = res.about;
@@ -218,3 +228,5 @@ export function openImg(element) {
 //ВЫЗОВ ФУНКЦИИ ВАЛИДАЦИИ
 enableValidation(settings);
 //:3
+
+
