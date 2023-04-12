@@ -1,139 +1,198 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
-</head>
+  <body class="page">
+    <header class="header">
+      <a class="header__logo" href="#"></a>
+    </header>
 
-<body class="page">
-  <header class="header">
-    <a class="header__logo" href="#"></a>
-  </header>
+    <main class="content">
+      <section class="profile">
+        <button
+          class="profile__button-avatar"
+          id="profile__avatar"
+          type="button"
+        >
+          <img class="profile__avatar" src="" alt="Аватар" />
+        </button>
 
-  <main class="content">
-
-    <section class="profile">
-      
-      <button class="profile__button-avatar" id="profile__avatar" type="button">
-        <img class="profile__avatar" src="" alt="Аватар">
-      </button>
-      
-      <div class="profile__info">
-        <div class="profile__name-container">
-          <h1 class="profile__name">Загрузка...</h1>
-          <button class="profile__edit" type="button"></button>
+        <div class="profile__info">
+          <div class="profile__name-container">
+            <h1 class="profile__name">Загрузка...</h1>
+            <button class="profile__edit" type="button"></button>
+          </div>
+          <p class="profile__info-about">Загрузка...</p>
         </div>
-        <p class="profile__info-about">Загрузка...</p>
+        <button class="profile__add" id="profile__add" type="button"></button>
+      </section>
+
+      <section class="elements"></section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    </footer>
+
+    <section class="popup overlay" id="popup-edit">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+
+        <form class="popup__edit" name="edit-form" id="edit-form" novalidate>
+          <!-- <fieldset class="popup__fieldset"> -->
+          <input
+            class="popup__input"
+            id="input-name"
+            type="text"
+            name="userName"
+            placeholder="Имя"
+            value=""
+            required
+            minlength="2"
+            maxlength="40"
+            pattern="^[a-zA-Zа-яёА-ЯЁ\s-]+$"
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+          />
+          <span class="popup__input-error input-name-error"></span>
+
+          <input
+            class="popup__input"
+            id="input-job"
+            type="text"
+            name="userAbout"
+            placeholder="О себе"
+            value=""
+            required
+            minlength="2"
+            maxlength="200"
+            pattern="^[a-zA-Zа-яёА-ЯЁ\s-]+$"
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+          />
+
+          <span class="popup__input-error input-job-error"></span>
+
+          <button class="popup__save" type="submit">Сохранить</button>
+          <!-- </fieldset> -->
+        </form>
+        <button
+          class="popup__close"
+          id="popup-edit__close"
+          type="button"
+        ></button>
       </div>
-      <button class="profile__add" id="profile__add" type="button"></button>
     </section>
 
-    <section class="elements"></section>
+    <section class="popup overlay" id="popup-mesto">
+      <div class="popup__container" id="popup-mesto__container">
+        <h2 class="popup__title" id="popup-mesto__title">Новое место</h2>
 
-  </main>
-
-  <footer class="footer">
-    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
-  </footer>
-
-
-  <section class="popup overlay" id="popup-edit">
-    <div class="popup__container">
-      <h2 class="popup__title">Редактировать профиль</h2>
-
-        <form class="popup__edit" name="edit-form" novalidate>
+        <form
+          class="popup__edit"
+          id="popup-mesto__edit"
+          name="add-form"
+          novalidate
+        >
           <!-- <fieldset class="popup__fieldset"> -->
-            <input class="popup__input" id="input-name" type="text" name="name" placeholder="Имя" value=""
+          <input
+            class="popup__input"
+            id="input-title"
+            type="text"
+            name="title"
+            placeholder="Название"
             required
-            minlength='2'
-            maxlength='40'
+            minlength="2"
+            maxlength="30"
             pattern="^[a-zA-Zа-яёА-ЯЁ\s-]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"> 
-            <span class="popup__input-error input-name-error"></span>
+            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы"
+          />
+          <span class="popup__input-error input-title-error"></span>
 
-            <input  class="popup__input" id="input-job" type="text" name="about" placeholder="О себе" value=""
-            required 
-            minlength='2' 
-            maxlength='200'
-            pattern="^[a-zA-Zа-яёА-ЯЁ\s-]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
-
-            <span class="popup__input-error input-job-error"></span>
-          
-            <button class="popup__save" type="submit">Сохранить</button>
-          <!-- </fieldset> -->
-        </form>
-      <button class="popup__close" id="popup-edit__close" type="button"></button>
-    </div>
-  </section>
-  
-
-
-  <section class="popup overlay" id="popup-mesto">
-    <div class="popup__container" id="popup-mesto__container">
-      <h2 class="popup__title" id="popup-mesto__title">Новое место</h2>
-
-        <form class="popup__edit" id="popup-mesto__edit" name="add-form" novalidate>
-         <!-- <fieldset class="popup__fieldset"> -->
-            <input class="popup__input" id="input-title" type="text" name="title" placeholder="Название"
+          <input
+            class="popup__input"
+            id="input-link"
+            type="url"
             required
-            minlength='2'
-            maxlength='30'
-            pattern="^[a-zA-Zа-яёА-ЯЁ\s-]+$"
-            data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы">
-            <span class="popup__input-error input-title-error"></span>
+            minlength="2"
+            name="link"
+            placeholder="Ссылка на картинку"
+          />
+          <span class="popup__input-error input-link-error"></span>
 
-            <input class="popup__input" id="input-link" type="url" required minlength='2' name="link" placeholder="Ссылка на картинку">
-            <span class="popup__input-error input-link-error"></span>
-          
-            <button class="popup__save" id="popup-mesto__save" type="submit">Создать</button>
+          <button class="popup__save" id="popup-mesto__save" type="submit">
+            Создать
+          </button>
           <!-- </fieldset> -->
         </form>
-      <button class="popup__close" id="popup-mesto__close" type="button"></button>
-    </div>
-  </section>
-
-
-  <section class="popup overlay" id="popup-avatar">
-    <div class="popup__container" id="popup-avatar__container">
-      <h2 class="popup__title" id="popup-avatar__title">Обновить аватар</h2>
-        <form class="popup__edit popup-avatar__edit" id="popup-avatar__edit" name="add-avatar-form" novalidate>
-         <!-- <fieldset class="popup__fieldset"> -->
-            <input class="popup__input popup__input_avatar" id="input-avatar-link" type="url" required minlength='2' name="link" placeholder="Ссылка на картинку">
-            <span class="popup__input-error input-avatar-link-error"></span>
-          
-            <button class="popup__save" id="popup-avatar__save" type="submit">Сохранить</button>
-          <!-- </fieldset> -->
-        </form>
-      <button class="popup__close" id="popup-avatar__close" type="button"></button>
-    </div>
-  </section>
-
-
-
-  <section class="popup popup-image overlay" id="popup-img">
-    <div class="popup-img__container" id="popup-img__container">
-      <img class="popup-img__image" src="" alt="">
-      <button class="popup__close" id="popup-img__close" type="button"></button>
-      <h2 class="popup-img__title" id="popup-img__title"></h2>
-    </div>
-  </section>
-
-  <template id="card-template">
-    <article class="card">
-      <img class="card__image" src="" alt="">
-      <button class="card__button-delete" type="button"></button>
-      <div class="card__title-container">
-        <h2 class="card__title"></h2>
-        <div class="card__like-container">
-          <button class="card__button-like" type="button"></button>
-          <p class = "card__like-counter"></p>
-        </div>
+        <button
+          class="popup__close"
+          id="popup-mesto__close"
+          type="button"
+        ></button>
       </div>
-    </article>
-  </template>
-</body>
+    </section>
 
+    <section class="popup overlay" id="popup-avatar">
+      <div class="popup__container" id="popup-avatar__container">
+        <h2 class="popup__title" id="popup-avatar__title">Обновить аватар</h2>
+        <form
+          class="popup__edit popup-avatar__edit"
+          id="popup-avatar__edit"
+          name="add-avatar-form"
+          novalidate
+        >
+          <!-- <fieldset class="popup__fieldset"> -->
+          <input
+            class="popup__input popup__input_avatar"
+            id="input-avatar-link"
+            type="url"
+            required
+            minlength="2"
+            name="link"
+            placeholder="Ссылка на картинку"
+          />
+          <span class="popup__input-error input-avatar-link-error"></span>
+
+          <button class="popup__save" id="popup-avatar__save" type="submit">
+            Сохранить
+          </button>
+          <!-- </fieldset> -->
+        </form>
+        <button
+          class="popup__close"
+          id="popup-avatar__close"
+          type="button"
+        ></button>
+      </div>
+    </section>
+
+    <section class="popup popup-image overlay" id="popup-img">
+      <div class="popup-img__container" id="popup-img__container">
+        <img class="popup-img__image" src="" alt="" />
+        <button
+          class="popup__close"
+          id="popup-img__close"
+          type="button"
+        ></button>
+        <h2 class="popup-img__title" id="popup-img__title"></h2>
+      </div>
+    </section>
+
+    <template id="card-template">
+      <article class="card">
+        <img class="card__image" src="" alt="" />
+        <button class="card__button-delete" type="button"></button>
+        <div class="card__title-container">
+          <h2 class="card__title"></h2>
+          <div class="card__like-container">
+            <button class="card__button-like" type="button"></button>
+            <p class="card__like-counter"></p>
+          </div>
+        </div>
+      </article>
+    </template>
+  </body>
 </html>
