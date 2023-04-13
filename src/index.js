@@ -4,7 +4,12 @@ import {
   popupEditButtonOpen,
   popupAddButtonOpen,
   popupAvatarButtonOpen,
-} from "./components/constants.js";
+  config,
+  popupAddForm,
+  popupEditForm,
+  popupAvatarForm,
+  settings
+} from "./utilits/constants.js";
 
 import Api from "./components/Api.js";
 import UserInfo from "./components/UserInfo";
@@ -14,17 +19,7 @@ import PopupWithForm from "./components/PopupWithForm";
 import FormValidator from "./components/FormValidator";
 import PopupWithImage from "./components/PopupWithImage";
 
-const popupAddForm = document.querySelector("#popup-mesto__edit");
-const popupEditForm = document.querySelector("#edit-form");
-const popupAvatarForm = document.querySelector("#popup-avatar__edit");
 
-const config = {
-  baseUrl: "https://nomoreparties.co/v1/plus-cohort-20",
-  headers: {
-    authorization: "21e38aba-593f-4d28-b61c-f45be8c5d807",
-    "Content-Type": "application/json",
-  },
-};
 
 const api = new Api(config);
 
@@ -54,7 +49,6 @@ Promise.all([api.getCards(), api.getProfile()])
   });
 
 //функция создания карточки
-
 function generateCard(data) {
   const newCard = new Card(
     data,
@@ -112,6 +106,7 @@ function handleDeleteCard(cardId, func) {
 const popupFormNewCard = new PopupWithForm({
   selector: "#popup-mesto",
   handleSubmitForm: (data) => {
+    popupFormNewCard.showLoading(true);
     api
       .addNewCard(data)
       .then((res) => {
@@ -121,6 +116,9 @@ const popupFormNewCard = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupFormNewCard.showLoading(false);
       });
   },
 });
@@ -128,6 +126,7 @@ const popupFormNewCard = new PopupWithForm({
 const popupWithAvatar = new PopupWithForm({
   selector: "#popup-avatar",
   handleSubmitForm: (data) => {
+    popupWithAvatar.showLoading(true);
     api
       .changeAvatar(data)
       .then((res) => {
@@ -136,21 +135,18 @@ const popupWithAvatar = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupWithAvatar.showLoading(false);
       });
   },
 });
-
-//   popupAvatarSave.textContent = "Сохранение...";
-
-//     .finally(() => {
-//       popupAvatarSave.textContent = "Сохранить";
-//     });
-// }
 
 //Функция поменять ИМЯ И ОПИСАНИЕ ПРОФИЛЯ
 const popupFormProfile = new PopupWithForm({
   selector: "#popup-edit",
   handleSubmitForm: (data) => {
+    popupFormProfile.showLoading(true);
     api
       .changeInfoProfile(data)
       .then((res) => {
@@ -159,6 +155,9 @@ const popupFormProfile = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        popupFormProfile.showLoading(false);
       });
   },
 });
@@ -176,13 +175,7 @@ popupAddButtonOpen.addEventListener("click", function () {
   popupFormNewCard.open();
 });
 
-const settings = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save",
-  inactiveButtonClass: "button_inactive",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_active",
-};
+
 const placeFormValidator = new FormValidator(settings, popupAddForm);
 placeFormValidator.enableValidation();
 const profileFormValidator = new FormValidator(settings, popupEditForm);

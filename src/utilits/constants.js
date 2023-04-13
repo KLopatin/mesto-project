@@ -16,7 +16,7 @@ const popupAddButtonClose = document.querySelector("#popup-mesto__close"); //–ù–
 const popupAvatar = document.querySelector("#popup-avatar");
 const popupAvatarButtonClose = document.querySelector("#popup-avatar__close");
 const popupAvatarButtonOpen = document.querySelector("#profile__avatar");
-const popupAvatarForm = document.querySelector('[name="add-avatar-form"]');
+// const popupAvatarForm = document.querySelector('[name="add-avatar-form"]');
 const popupAvatarInput = document.querySelector("#input-avatar-link");
 const popupAvatarSave = document.querySelector("#popup-avatar__save");
 
@@ -58,7 +58,19 @@ const settings = {
   errorClass: 'popup__input-error_active'
 }; 
 
+const popupAddForm = document.querySelector("#popup-mesto__edit");
+const popupEditForm = document.querySelector("#edit-form");
+const popupAvatarForm = document.querySelector("#popup-avatar__edit");
+
+const config = {
+  baseUrl: "https://nomoreparties.co/v1/plus-cohort-20",
+  headers: {
+    authorization: "21e38aba-593f-4d28-b61c-f45be8c5d807",
+    "Content-Type": "application/json",
+  },
+};
+
 export {cardContainer, popupEdit, popupEditButtonOpen, popupEditButtonClose, popupAdd, popupAddButtonOpen, popupAddButtonClose, formProfileElement,
 nameInput, jobInput, profileName, profileJob, mestoEdit, title, link, popupImg, imgLink, imgName, popupImgClose, cardTemplate, form,
 formInput, formError, settings, mestoSave, profileAvatar, popupAvatar, popupAvatarButtonClose, popupAvatarButtonOpen, popupAvatarForm,
-popupAvatarInput, popupAvatarSave, popupEditSave, popups};
+popupAvatarInput, popupAvatarSave, popupEditSave, popups, popupAddForm, popupEditForm, config};
